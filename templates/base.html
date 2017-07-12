@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>YourTube</title>
+
+    <!-- Bootstrap core CSS -->
+      {% include "html_reference.html"%}
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="navbar-top.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light navbar-toggleable-md navbar-inverse bg-inverse mb-4">
+      {% if session['account'] %}
+      <h6 class="navbar-brand" >Hi {{session['name']}}</h6>
+      {% endif %}
+      <button class="navbar-toggler navbar-toggler-xs" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">ß
+        <ul class="navbar-nav mr-auto">
+          {% if not session['account'] %}
+          <li class="nav-item active">
+            <a class="nav-link" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a>
+          </li>
+          {% endif %}
+          {% if session['account'] %}
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/favorite"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;favorite</a>
+          </li>
+          {% endif %}
+        </ul>
+        <form class="form-inline mt-2 mt-md-0" action="/results">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+  </body>
+</html>
